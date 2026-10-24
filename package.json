@@ -1,0 +1,19 @@
+{
+  "name": "la-perla-indicadores-2026",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "db:generate": "drizzle-kit generate",
+    "build:pages": "node scripts/build.mjs && node scripts/export-pages.mjs"
+  },
+  "devDependencies": {
+    "drizzle-kit": "0.31.10",
+    "drizzle-orm": "0.45.2"
+  },
+  "dependencies": {
+    "exceljs": "4.4.0",
+    "jspdf": "4.2.0"
+  }
+}

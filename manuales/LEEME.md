@@ -1,0 +1,1 @@
+Los manuales PDF se entregan en esta carpeta junto con su contenido editable en `manuales.json`. Se generan con `scripts/create-manuals.py` (Python, reportlab). Los PNG de revisión no forman parte del proyecto publicado.

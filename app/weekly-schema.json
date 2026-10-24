@@ -1,0 +1,431 @@
+{
+  "year": 2026,
+  "sections": [
+    {
+      "id": "informacion",
+      "title": "Atención e información",
+      "fields": [
+        "calls"
+      ]
+    },
+    {
+      "id": "adopciones",
+      "title": "Adopciones",
+      "fields": [
+        "adoptionsDogs",
+        "adoptionsCats"
+      ]
+    },
+    {
+      "id": "comunidad",
+      "title": "Restituciones e ingresos",
+      "fields": [
+        "returnsRescue",
+        "returnsIPPA",
+        "apm",
+        "seizures",
+        "confiscations",
+        "deadAdmissions",
+        "community",
+        "school"
+      ]
+    },
+    {
+      "id": "veterinario",
+      "title": "Esterilizaciones",
+      "fields": [
+        "sterilizationsInternalDogs",
+        "sterilizationsInternalCats",
+        "sterilizationsOutpatientDogs",
+        "sterilizationsOutpatientCats"
+      ]
+    },
+    {
+      "id": "asistencial",
+      "title": "Rescate y vacunación",
+      "fields": [
+        "rescuesDogs",
+        "rescuesCats",
+        "feral",
+        "rabies",
+        "vaccines"
+      ]
+    },
+    {
+      "id": "salud",
+      "title": "Atención veterinaria y laboratorio",
+      "fields": [
+        "deathsDogs",
+        "deathsCats",
+        "euthanasiaDogs",
+        "euthanasiaCats",
+        "scheduled",
+        "extra",
+        "chipsDogs",
+        "chipsCats",
+        "labReferrals",
+        "blood",
+        "cytology",
+        "otherTests",
+        "chemistry"
+      ]
+    },
+    {
+      "id": "recursos",
+      "title": "Alimentos y alojamiento",
+      "fields": [
+        "foodDogs",
+        "foodPuppies",
+        "foodCats",
+        "foodKittens",
+        "foodPigeons",
+        "housedDogs",
+        "housedCats",
+        "readyDogs",
+        "readyCats"
+      ]
+    },
+    {
+      "id": "intervenciones",
+      "title": "Intervenciones y sensibilización",
+      "fields": [
+        "iaa",
+        "iaaDogs",
+        "beneficiaries",
+        "sensitization",
+        "peopleReached"
+      ]
+    }
+  ],
+  "fields": [
+    {
+      "key": "calls",
+      "label": "Atención a la línea telefónica",
+      "metric": "calls",
+      "splitIndex": null,
+      "unit": "registros"
+    },
+    {
+      "key": "adoptionsDogs",
+      "label": "Adopciones · caninos",
+      "metric": "adoptions",
+      "splitIndex": 0,
+      "unit": "animales"
+    },
+    {
+      "key": "adoptionsCats",
+      "label": "Adopciones · felinos",
+      "metric": "adoptions",
+      "splitIndex": 1,
+      "unit": "animales"
+    },
+    {
+      "key": "returnsRescue",
+      "label": "Restituidos desde rescates",
+      "metric": "returnsRescue",
+      "splitIndex": null,
+      "unit": "registros"
+    },
+    {
+      "key": "returnsIPPA",
+      "label": "Restituidos desde IPPA",
+      "metric": "returnsIPPA",
+      "splitIndex": null,
+      "unit": "registros"
+    },
+    {
+      "key": "apm",
+      "label": "Aprehensión material preventiva",
+      "metric": "apm",
+      "splitIndex": null,
+      "unit": "registros"
+    },
+    {
+      "key": "seizures",
+      "label": "Incautados",
+      "metric": "seizures",
+      "splitIndex": null,
+      "unit": "registros"
+    },
+    {
+      "key": "confiscations",
+      "label": "Decomisos",
+      "metric": "confiscations",
+      "splitIndex": null,
+      "unit": "registros"
+    },
+    {
+      "key": "deadAdmissions",
+      "label": "Muertos · bloque de ingresos",
+      "metric": "deadAdmissions",
+      "splitIndex": null,
+      "unit": "registros"
+    },
+    {
+      "key": "community",
+      "label": "Atención a animales comunales",
+      "metric": "community",
+      "splitIndex": null,
+      "unit": "registros"
+    },
+    {
+      "key": "school",
+      "label": "Atención a animales escolares",
+      "metric": "school",
+      "splitIndex": null,
+      "unit": "registros"
+    },
+    {
+      "key": "sterilizationsInternalDogs",
+      "label": "Internas · caninos",
+      "metric": "sterilizationsInternal",
+      "splitIndex": 0,
+      "unit": "procedimientos"
+    },
+    {
+      "key": "sterilizationsInternalCats",
+      "label": "Internas · felinos",
+      "metric": "sterilizationsInternal",
+      "splitIndex": 1,
+      "unit": "procedimientos"
+    },
+    {
+      "key": "sterilizationsOutpatientDogs",
+      "label": "Atención externa del CBA · caninos",
+      "metric": "sterilizationsOutpatient",
+      "splitIndex": 0,
+      "unit": "procedimientos"
+    },
+    {
+      "key": "sterilizationsOutpatientCats",
+      "label": "Atención externa del CBA · felinos",
+      "metric": "sterilizationsOutpatient",
+      "splitIndex": 1,
+      "unit": "procedimientos"
+    },
+    {
+      "key": "rescuesDogs",
+      "label": "Rescates · caninos",
+      "metric": "rescues",
+      "splitIndex": 0,
+      "unit": "registros"
+    },
+    {
+      "key": "rescuesCats",
+      "label": "Rescates · felinos",
+      "metric": "rescues",
+      "splitIndex": 1,
+      "unit": "registros"
+    },
+    {
+      "key": "feral",
+      "label": "Atención a felinos ferales",
+      "metric": "feral",
+      "splitIndex": null,
+      "unit": "registros"
+    },
+    {
+      "key": "rabies",
+      "label": "Vacunación antirrábica",
+      "metric": "rabies",
+      "splitIndex": null,
+      "unit": "registros"
+    },
+    {
+      "key": "vaccines",
+      "label": "Pentavalente, Puppy y Triple Felina",
+      "metric": "vaccines",
+      "splitIndex": null,
+      "unit": "registros"
+    },
+    {
+      "key": "deathsDogs",
+      "label": "Muertes · caninos",
+      "metric": "deaths",
+      "splitIndex": 0,
+      "unit": "registros"
+    },
+    {
+      "key": "deathsCats",
+      "label": "Muertes · felinos",
+      "metric": "deaths",
+      "splitIndex": 1,
+      "unit": "registros"
+    },
+    {
+      "key": "euthanasiaDogs",
+      "label": "Eutanasias · caninos",
+      "metric": "euthanasia",
+      "splitIndex": 0,
+      "unit": "registros"
+    },
+    {
+      "key": "euthanasiaCats",
+      "label": "Eutanasias · felinos",
+      "metric": "euthanasia",
+      "splitIndex": 1,
+      "unit": "registros"
+    },
+    {
+      "key": "scheduled",
+      "label": "Consultas programadas",
+      "metric": "scheduled",
+      "splitIndex": null,
+      "unit": "registros"
+    },
+    {
+      "key": "extra",
+      "label": "Consultas extras",
+      "metric": "extra",
+      "splitIndex": null,
+      "unit": "registros"
+    },
+    {
+      "key": "chipsDogs",
+      "label": "Microchips · caninos",
+      "metric": "chips",
+      "splitIndex": 0,
+      "unit": "registros"
+    },
+    {
+      "key": "chipsCats",
+      "label": "Microchips · felinos",
+      "metric": "chips",
+      "splitIndex": 1,
+      "unit": "registros"
+    },
+    {
+      "key": "labReferrals",
+      "label": "Remisiones a laboratorio",
+      "metric": "labReferrals",
+      "splitIndex": null,
+      "unit": "registros"
+    },
+    {
+      "key": "blood",
+      "label": "Hemogramas",
+      "metric": "blood",
+      "splitIndex": null,
+      "unit": "registros"
+    },
+    {
+      "key": "cytology",
+      "label": "Citologías (TVT)",
+      "metric": "cytology",
+      "splitIndex": null,
+      "unit": "registros"
+    },
+    {
+      "key": "otherTests",
+      "label": "Otras pruebas de laboratorio",
+      "metric": "otherTests",
+      "splitIndex": null,
+      "unit": "registros"
+    },
+    {
+      "key": "chemistry",
+      "label": "Química sanguínea",
+      "metric": "chemistry",
+      "splitIndex": null,
+      "unit": "registros"
+    },
+    {
+      "key": "foodDogs",
+      "label": "Alimento · caninos adultos",
+      "metric": "foodDogs",
+      "splitIndex": null,
+      "unit": "kg"
+    },
+    {
+      "key": "foodPuppies",
+      "label": "Alimento · cachorros caninos",
+      "metric": "foodPuppies",
+      "splitIndex": null,
+      "unit": "kg"
+    },
+    {
+      "key": "foodCats",
+      "label": "Alimento · felinos adultos",
+      "metric": "foodCats",
+      "splitIndex": null,
+      "unit": "kg"
+    },
+    {
+      "key": "foodKittens",
+      "label": "Alimento · cachorros felinos",
+      "metric": "foodKittens",
+      "splitIndex": null,
+      "unit": "kg"
+    },
+    {
+      "key": "foodPigeons",
+      "label": "Alimento · palomas",
+      "metric": "foodPigeons",
+      "splitIndex": null,
+      "unit": "kg"
+    },
+    {
+      "key": "housedDogs",
+      "label": "Alojados · caninos",
+      "metric": "housed",
+      "splitIndex": 0,
+      "unit": "animales"
+    },
+    {
+      "key": "housedCats",
+      "label": "Alojados · felinos",
+      "metric": "housed",
+      "splitIndex": 1,
+      "unit": "animales"
+    },
+    {
+      "key": "readyDogs",
+      "label": "Aptos para adopción · caninos",
+      "metric": "ready",
+      "splitIndex": 0,
+      "unit": "animales"
+    },
+    {
+      "key": "readyCats",
+      "label": "Aptos para adopción · felinos",
+      "metric": "ready",
+      "splitIndex": 1,
+      "unit": "animales"
+    },
+    {
+      "key": "iaa",
+      "label": "Intervenciones asistidas con animales",
+      "metric": "iaa",
+      "splitIndex": null,
+      "unit": "registros"
+    },
+    {
+      "key": "iaaDogs",
+      "label": "Caninos en intervenciones asistidas",
+      "metric": "iaaDogs",
+      "splitIndex": null,
+      "unit": "animales"
+    },
+    {
+      "key": "beneficiaries",
+      "label": "Personas beneficiadas",
+      "metric": "beneficiaries",
+      "splitIndex": null,
+      "unit": "personas"
+    },
+    {
+      "key": "sensitization",
+      "label": "Sensibilización en convivencia responsable",
+      "metric": "sensitization",
+      "splitIndex": null,
+      "unit": "registros"
+    },
+    {
+      "key": "peopleReached",
+      "label": "Personas impactadas",
+      "metric": "peopleReached",
+      "splitIndex": null,
+      "unit": "personas"
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "calls": [
+    "Atención a la línea telefónica",
+    "Atención telefónica"
+  ],
+  "adoptions": [
+    "Adopciones ",
+    "Adopciones"
+  ],
+  "returns": [
+    "Animales restituidos",
+    "Animales restituidos"
+  ],
+  "returnsRescue": [
+    "Rescates",
+    "Restituidos desde rescates"
+  ],
+  "returnsIPPA": [
+    "IPPA",
+    "Restituidos desde IPPA"
+  ],
+  "admissions": [
+    "Ingreso (APM, INC Y DEC)",
+    "Ingresos APM, INC y DEC"
+  ],
+  "apm": [
+    "Aprehensión Material Preventiva",
+    "Aprehensión material preventiva"
+  ],
+  "seizures": [
+    "Incautados",
+    "Incautados"
+  ],
+  "confiscations": [
+    "Decomisos",
+    "Decomisos"
+  ],
+  "deadAdmissions": [
+    "Muertos",
+    "Muertos en el bloque de ingresos"
+  ],
+  "community": [
+    "Atención Animales Comunales",
+    "Atención a animales comunales"
+  ],
+  "school": [
+    "Atención Animales Escolares",
+    "Atención a animales escolares"
+  ],
+  "sterilizationsInternal": [
+    "Esterilizaciones Internas",
+    "Esterilizaciones internas"
+  ],
+  "sterilizationsOutpatient": [
+    "Esterilizaciones Externas",
+    "Esterilizaciones de atención externa"
+  ],
+  "sterilizations": [
+    "Total Esterilizaciones CBA",
+    "Esterilizaciones del CBA"
+  ],
+  "rescues": [
+    "Rescate",
+    "Rescates"
+  ],
+  "feral": [
+    "Atención felinos ferales",
+    "Atención a felinos ferales"
+  ],
+  "rabies": [
+    "Vacunación antirrábica",
+    "Vacunación antirrábica"
+  ],
+  "vaccines": [
+    "Vacunación (Pentavalente, Puppy y Triple Felina)",
+    "Otras vacunas"
+  ],
+  "deaths": [
+    "Muertes",
+    "Muertes"
+  ],
+  "euthanasia": [
+    "Eutanasias",
+    "Eutanasias"
+  ],
+  "consultations": [
+    "Consulta Externa",
+    "Consultas externas del CBA"
+  ],
+  "scheduled": [
+    "Programadas",
+    "Consultas programadas"
+  ],
+  "extra": [
+    "Extras",
+    "Consultas extras"
+  ],
+  "chips": [
+    "Microchips implantados",
+    "Microchips implantados"
+  ],
+  "labReferrals": [
+    "Remisiones pruebas laboratorio",
+    "Remisiones a laboratorio"
+  ],
+  "blood": [
+    "Hemogramas",
+    "Hemogramas"
+  ],
+  "cytology": [
+    "Citologías (TVT)",
+    "Citologías"
+  ],
+  "otherTests": [
+    "Otras pruebas (Coprológicos, KHO, extendidos, y otros)",
+    "Otras pruebas de laboratorio"
+  ],
+  "chemistry": [
+    "Química Sanguínea",
+    "Química sanguínea"
+  ],
+  "foodDogs": [
+    "Alimento - Caninos (Adultos) (KG)",
+    "Alimento para perros adultos"
+  ],
+  "foodPuppies": [
+    "Alimento - Caninos (Cachorros) (KG)",
+    "Alimento para cachorros caninos"
+  ],
+  "foodCats": [
+    "Alimento - Felinos (Adultos) (KG)",
+    "Alimento para gatos adultos"
+  ],
+  "foodKittens": [
+    "Alimento - Felinos (Cachorros) (KG)",
+    "Alimento para cachorros felinos"
+  ],
+  "foodPigeons": [
+    "Alimento - Palomas (KG)",
+    "Alimento para palomas"
+  ],
+  "housed": [
+    "Población General Alojada",
+    "Animales alojados"
+  ],
+  "ready": [
+    "Animales Aptos para Adopción",
+    "Animales aptos para adopción"
+  ],
+  "integral": [
+    "ATENCIÓN MEDICA INTEGRAL (Rescates - Esterilizaciones Externas - Etención Felinos Ferales)",
+    "Atención médica integral"
+  ],
+  "iaa": [
+    "Intervenciones asistidas con animales",
+    "Intervenciones asistidas por animales"
+  ],
+  "iaaDogs": [
+    "Caninos en intervenciones asistidas"
+  ],
+  "beneficiaries": [
+    "Personas beneficiadas"
+  ],
+  "sensitization": [
+    "Sensibilización en convivencia responsable"
+  ],
+  "peopleReached": [
+    "Personas impactadas"
+  ]
+}
