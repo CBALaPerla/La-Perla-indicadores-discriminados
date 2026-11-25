@@ -6,11 +6,15 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "db:generate": "drizzle-kit generate",
-    "build:pages": "node scripts/build.mjs && node scripts/export-pages.mjs"
+    "build:pages": "node scripts/build.mjs && node scripts/export-pages.mjs",
+    "db:migrate": "wrangler d1 migrations apply la-perla-indicadores --remote",
+    "deploy": "node scripts/build.mjs && wrangler deploy",
+    "dev": "node scripts/build.mjs && wrangler dev"
   },
   "devDependencies": {
     "drizzle-kit": "0.31.10",
-    "drizzle-orm": "0.45.2"
+    "drizzle-orm": "0.45.2",
+    "wrangler": "4.164.0"
   },
   "dependencies": {
     "exceljs": "4.4.0",

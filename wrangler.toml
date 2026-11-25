@@ -1,0 +1,32 @@
+# Servicio del dashboard en Cloudflare Workers (cuenta propia del CBA La Perla).
+# Antes de publicar, reemplaza database_id por el valor que entrega:
+#   npx wrangler d1 create la-perla-indicadores
+name = "la-perla-indicadores"
+main = "dist/server/index.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+[vars]
+# Forma de proteger la edición:
+#   "password" = solo con la palabra clave (no requiere Cloudflare Access ni tarjeta).
+#   ""         = con Cloudflare Access (ver ACCESS_* abajo y el README).
+AUTH_MODE = "password"
+# Dominio del equipo de Cloudflare Zero Trust, por ejemplo https://laperla.cloudflareaccess.com
+ACCESS_TEAM_DOMAIN = ""
+# "Application Audience (AUD) Tag" de la aplicación de Access que protege /admin
+ACCESS_AUD = ""
+
+# Secretos (no se escriben aquí; se cargan con "npx wrangler secret put NOMBRE"):
+#   ADMIN_EMAILS            correos con permiso de edición, separados por coma
+#   LAPERLA_ADMIN_PASSWORD  palabra clave para activar la edición
+
+[[d1_databases]]
+binding = "DB"
+database_name = "la-perla-indicadores"
+database_id = "81bedb67-4b45-4dde-86d7-e4faac373bb2"
+migrations_dir = "drizzle"
+
+# Opcional: guardar una copia de cada Excel cargado. Requiere activar R2 en la cuenta.
+# [[r2_buckets]]
+# binding = "BUCKET"
+# bucket_name = "la-perla-indicadores-excel"

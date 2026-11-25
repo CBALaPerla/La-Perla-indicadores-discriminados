@@ -1,4 +1,4 @@
-// GitHub Pages: public reading uses the hosted service; editing stays there.
+// GitHub Pages: public reading uses the Cloudflare service; editing stays there.
 const PAGES_CONFIG=globalThis.PERLA_CONFIG||{};
 async function apiFetch(path,options={}){
  if(!PAGES_CONFIG.apiBase)return globalThis.fetch(path,options);

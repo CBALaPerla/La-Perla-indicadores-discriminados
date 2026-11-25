@@ -4,3 +4,4 @@
 @media print{.year-bar,.admin-strip{display:none}}
 
 .filters{flex-wrap:wrap}.week-filter{min-width:190px}.week-filter small{display:block;max-width:235px;margin-top:5px;color:#5d7180;line-height:1.4}select:disabled{opacity:.65}@media(max-width:600px){.filters{display:grid;grid-template-columns:1fr 1fr}.filters .field{min-width:0}.week-filter{grid-column:1/-1}.week-filter small{max-width:none}.filters .reset{grid-column:1/-1}}
+.restore-form{margin-top:28px;border-top:1px solid var(--line);padding-top:20px}.restore-form h3{margin-bottom:8px}.restore-form input[type=file]{width:100%;max-width:100%;font-size:.875rem;padding:8px 0}

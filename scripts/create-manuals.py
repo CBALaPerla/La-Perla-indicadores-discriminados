@@ -18,7 +18,10 @@ styles.add(ParagraphStyle(name='TitlePerla',fontName='PerlaBold',fontSize=23,lea
 styles.add(ParagraphStyle(name='SubPerla',fontName='Perla',fontSize=10.4,leading=15,textColor=HexColor('#526b7c'),spaceAfter=16))
 styles.add(ParagraphStyle(name='HeadingPerla',fontName='PerlaBold',fontSize=11.1,leading=16,textColor=HexColor('#007aa4'),spaceAfter=4))
 styles.add(ParagraphStyle(name='BodyPerla',fontName='Perla',fontSize=9.5,leading=14.4,textColor=HexColor('#193e52'),spaceAfter=13))
-site='https://la-perla-indicadores-2026.esumer-3704.chatgpt.site/'
+import os
+# Dirección del dashboard en Cloudflare, por ejemplo https://la-perla-indicadores.TU-CUENTA.workers.dev/
+site=os.environ.get('PERLA_SITE_URL','').strip()
+if not site.startswith('https://'):raise SystemExit('Define PERLA_SITE_URL con la dirección pública del dashboard.')
 def draw(c,d):
  c.setFillColor(HexColor('#007aa4'));c.rect(0,830,595,12,fill=1,stroke=0)
  c.drawImage(logo,42,770,width=108,height=50,mask='auto',preserveAspectRatio=True)

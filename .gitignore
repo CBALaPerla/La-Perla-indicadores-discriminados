@@ -9,3 +9,4 @@ dist/
 *.sqlite
 *.sqlite-*
 __pycache__/
+.dev.vars

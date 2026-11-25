@@ -1,4 +1,4 @@
-import {readFile,mkdir,writeFile,cp,rm} from 'node:fs/promises';
+import {readFile,mkdir,writeFile,rm} from 'node:fs/promises';
 let html=await readFile('app/index.html','utf8');
 const schema=JSON.parse(await readFile('app/weekly-schema.json','utf8'));
 const base=JSON.parse(html.match(/<script id="dashboard-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
@@ -19,13 +19,10 @@ const assets={'/assets/exceljs.js':await readFile('node_modules/exceljs/dist/exc
 const worker=await readFile('worker/index.js','utf8');
 await rm('dist',{recursive:true,force:true});
 await mkdir('dist/server',{recursive:true});
-await mkdir('dist/.openai',{recursive:true});
 await mkdir('dist/client',{recursive:true});
 await writeFile('dist/client/index.html',html);
 await writeFile('dist/server/index.js',`const HTML=${JSON.stringify(html)};\nconst FORM_SCHEMA=${JSON.stringify(schema)};\nconst BASE_DATA=${JSON.stringify(base)};\nconst BROWSER_ASSETS=${JSON.stringify(assets)};\n${worker}`);
-await cp('.openai/hosting.json','dist/.openai/hosting.json');
-await cp('drizzle','dist/.openai/drizzle',{recursive:true});
 const source=await readFile('dist/server/index.js','utf8');
 const module=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
 if(typeof module.default?.fetch!=='function')throw new Error('Worker must export fetch');
-console.log('Dashboard, protected data APIs, Excel import and PDF reports built. Migrations included.');
+console.log('Dashboard, protected data APIs, Excel import and PDF reports built in dist/. Deploy with: npx wrangler deploy');
