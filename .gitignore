@@ -10,3 +10,18 @@ dist/
 *.sqlite-*
 __pycache__/
 .dev.vars
+
+# Secretos y datos internos
+.dev.vars.*
+*.pem
+*.key
+*.xlsx
+*.xls
+copia-perla*.json
+
+# Sistema y editores
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+coverage/

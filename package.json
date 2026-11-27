@@ -12,6 +12,8 @@
     "dev": "node scripts/build.mjs && wrangler dev"
   },
   "devDependencies": {
+    "@fontsource/lato": "^5.3.0",
+    "@fontsource/nunito": "^5.3.0",
     "drizzle-kit": "0.31.10",
     "drizzle-orm": "0.45.2",
     "wrangler": "4.164.0"

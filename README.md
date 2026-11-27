@@ -1,18 +1,51 @@
 # La Perla · Indicadores
 
-Dashboard de gestión del Centro de Bienestar Animal La Perla. Consulta por año, mes, semana y especie; comparación entre años; registro semanal protegido; carga de Excel e informes PDF. Se excluyen los operadores y clínicas externas.
+Dashboard de gestión del Centro de Bienestar Animal La Perla. Consulta por año, mes, semana y especie; comparación entre años; registro semanal protegido; carga de Excel e informes PDF.
 
-Funciona en una cuenta propia de **Cloudflare** (plan gratuito): un Worker sirve el dashboard y los datos, D1 guarda los registros y la edición se protege con una **palabra clave** (modo sin tarjeta) o, de forma opcional, con **Cloudflare Access** (inicio de sesión por correo). Ya no depende de ChatGPT Sites.
+Funciona en una cuenta propia de **Cloudflare** (plan gratuito): un Worker sirve el dashboard y los datos, D1 guarda los registros y la edición se protege con una **palabra clave** (modo sin tarjeta) o, de forma opcional, con **Cloudflare Access** (inicio de sesión por correo).
 
 ## Qué contiene
 
-- `app/`: interfaz, cálculos, importación de Excel, filtros e informes PDF.
+- `app/`: interfaz, cálculos, importación de Excel, filtros e informes PDF (detalle en «Estructura de carpetas»).
 - `worker/`: servicio de datos (lectura pública, edición protegida, restauración de copias).
 - `db/`, `drizzle/`: estructura y migraciones de la base de datos D1.
 - `wrangler.toml`: configuración de Cloudflare (nombre del servicio, base de datos, inicio de sesión).
 - `scripts/`: construcción, exportación a GitHub Pages y pruebas.
 - `docs/`: copia de consulta para GitHub Pages (opcional).
 - `manuales/`: manuales PDF y su contenido editable.
+
+## Arquitectura
+
+```
+Navegador ──► Cloudflare Worker (worker/index.js)
+                 ├─ GET /                 HTML único (app/index.html + módulos, incrustado al compilar)
+                 ├─ GET /assets/*.js      exceljs y jsPDF (cargados bajo demanda)
+                 ├─ GET /api/data         lectura pública: registros semanales + años cargados
+                 └─ PUT/POST /api/*       edición protegida ─► D1 (base SQL) y, si se activa, R2 (copias del Excel)
+```
+
+- `npm run build` (`scripts/build.mjs`) junta `app/` en un solo HTML (`dist/client/index.html`) y genera `dist/server/index.js`, que incrusta el HTML, el esquema semanal, los datos base de 2026 y las librerías del navegador junto con el código del Worker. También calcula los hashes de los scripts en línea para la política de seguridad de contenido (CSP).
+- El Worker responde todas las rutas con cabeceras de seguridad (CSP, HSTS, `X-Frame-Options`, etc.). Ver `SECURITY.md`.
+- Los datos viven en D1; el HTML solo trae la base 2026 como respaldo. Los gráficos se calculan en el navegador a partir de esos datos.
+
+## Estructura de carpetas
+
+| Ruta | Contenido |
+| --- | --- |
+| `app/index.html` | Página, estructura, vistas y lógica principal de indicadores y gráficos (con marcadores `__NOMBRE__` que el build reemplaza). |
+| `app/theme.css` | Tema visual: colores, tipografías, espaciado y modo de impresión. |
+| `app/charts.css`, `app/charts.js` | Estilos y código de los gráficos dinámicos del tablero. |
+| `app/assets/` | Imágenes y fuentes del tema (logo, patrones). El build las incrusta como `data:` en el CSS; no se sirven por separado. |
+| `app/weekly-*.js`, `app/weekly.css`, `app/weekly-schema.json` | Registro semanal, cálculos derivados y esquema de campos. |
+| `app/multiyear-*`, `app/week-filter.js` | Años anteriores, comparación y filtro de semana. |
+| `app/excel-import.js`, `app/import-aliases.json` | Lectura del Excel consolidado y nombres alternativos de hojas e indicadores. |
+| `app/report-pdf.js` | Informes PDF. |
+| `worker/index.js` | API, autenticación, validación y cabeceras de seguridad. |
+| `db/`, `drizzle/` | Esquema y migraciones de D1. |
+| `scripts/` | `build.mjs`, `verify.mjs` (pruebas), `export-pages.mjs`. |
+| `docs/` | Copia de solo consulta para GitHub Pages (se regenera). |
+| `manuales/` | Manuales de usuario. |
+| `dist/` | Resultado de compilar. No se versiona (está en `.gitignore`): `npm run deploy` lo regenera antes de publicar. |
 
 ## Publicar en Cloudflare (una sola vez)
 
@@ -51,7 +84,7 @@ Necesitas Node.js 24, una cuenta gratuita en https://dash.cloudflare.com y esta 
    ```
    `LAPERLA_ADMIN_PASSWORD` es la palabra clave para activar la edición (obligatoria en ambas opciones; mínimo 12 caracteres en la opción A). `ADMIN_EMAILS` solo se usa con Cloudflare Access (opción B): son los correos con permiso de edición, separados por coma, iguales a los de la política de Access. Con la opción A no hace falta.
 6. **Publicar de nuevo** con la configuración completa: `npm run deploy`.
-7. **Restaurar los datos del sitio anterior.** Mientras el sitio de ChatGPT siga en línea, abre `https://la-perla-indicadores-2026.esumer-3704.chatgpt.site/api/data` en el navegador y guárdalo como `copia-perla.json` (Ctrl+S). En el nuevo dashboard entra a **Administración** (con la opción B, primero **Iniciar sesión con el correo autorizado** y escribe el código que llega al correo), activa la edición con la palabra clave y usa **Restaurar una copia de datos** con ese archivo. Solo funciona sobre una base vacía, así que hazlo antes de registrar semanas nuevas. Los Excel originales que estaban guardados en el sitio anterior no se pueden recuperar por esta vía; las cifras sí.
+7. **Restaurar los datos del sitio anterior.** Mientras el sitio anterior siga en línea, abre su dirección terminada en `/api/data` en el navegador y guárdalo como `copia-perla.json` (Ctrl+S). En el nuevo dashboard entra a **Administración** (con la opción B, primero **Iniciar sesión con el correo autorizado** y escribe el código que llega al correo), activa la edición con la palabra clave y usa **Restaurar una copia de datos** con ese archivo. Solo funciona sobre una base vacía, así que hazlo antes de registrar semanas nuevas. Los Excel originales que estaban guardados en el sitio anterior no se pueden recuperar por esta vía; las cifras sí.
 
 Para guardar también una copia de cada Excel cargado, activa R2 en la cuenta, crea un bucket y descomenta el bloque `r2_buckets` de `wrangler.toml`. Sin R2, la carga de Excel funciona igual y guarda las cifras.
 
@@ -113,11 +146,38 @@ Comprueban la importación, los cálculos, los filtros, el inicio de sesión de 
 
 Para regenerar los manuales con la dirección nueva: `$env:PERLA_SITE_URL="https://..."; python scripts/create-manuals.py`.
 
+## Agregar un gráfico o un indicador
+
+**Un gráfico nuevo** (con datos que ya existen):
+1. Escribe la función de dibujo en `app/charts.js`, siguiendo las existentes: recibe los datos ya filtrados por año, mes, semana y especie y devuelve el marcado.
+2. Añade sus estilos en `app/charts.css` y usa solo variables de color de `app/theme.css`; así respeta el tema y la impresión.
+3. Llámalo desde la vista correspondiente de `app/index.html`.
+4. Todo texto que venga de datos (etiquetas, nombres, nombres de archivo) debe pasar por `esc()` antes de entrar a `innerHTML`, o usar `textContent`. No agregues scripts ni estilos desde dominios externos: la CSP los bloquearía a propósito.
+
+**Un indicador nuevo** (campo que se registra cada semana):
+1. Agrega el campo en `app/weekly-schema.json` (clave, etiqueta, unidad, sección) y, si se calcula, en `app/weekly-core.js`.
+2. Si el Excel lo trae con otro nombre, agrega el alias en `app/import-aliases.json` y revisa `app/excel-import.js`.
+3. Inclúyelo en la vista que corresponda (`app/pages-config.js` / `app/index.html`) y en el informe PDF si aplica.
+4. Los datos base de 2026 (`dashboard-data` en `app/index.html`) deben tener el mismo `id` de indicador: el Worker rechaza cargas con indicadores desconocidos.
+5. Ejecuta `npm run build` y las pruebas (`scripts/verify.mjs`). Si cambia el esquema de la base, genera una migración con `npm run db:generate` y aplícala con `npm run db:migrate`.
+
+## Flujo de trabajo con git
+
+- La rama `main` es la que se publica. Trabaja en ramas cortas (`feature/grafico-adopciones`, `fix/filtro-semana`, `docs/readme`) y únelas a `main` por solicitud de cambios (pull request) con revisión.
+- Commits pequeños y en español, en presente y con el motivo: «Agrega gráfico de adopciones por mes». Un tema por commit.
+- Antes de cada commit: `npm run build` y `node scripts/verify.mjs "<ruta al Excel>"` deben pasar.
+- Registra los cambios visibles en `CHANGELOG.md` (sección «Sin publicar»).
+- **Nunca subas secretos:** `.dev.vars`, `.env`, la palabra clave, correos reales, bases de datos reales ni Excel con datos internos. Están en `.gitignore`; revisa `git status` antes de `git add`. Si un secreto llegó a subirse, cámbialo de inmediato (ver `SECURITY.md`) y avisa; borrar el commit no basta.
+- Publica solo desde una rama revisada, con la lista de verificación de `SECURITY.md`.
+
 ## Servicio protegido y seguridad
+
+Más detalle (amenazas, rotación de la palabra clave, cómo reportar) en `SECURITY.md`.
 
 - **Opción A (`AUTH_MODE = "password"`):** la edición exige la palabra clave (mínimo 12 caracteres; si es más corta, el servicio rechaza el acceso), una sesión vigente (cookie HttpOnly/Secure de una hora), origen propio y un límite de cinco intentos cada 15 minutos por dirección IP. Es la única barrera, así que usa una frase larga y única.
 - **Opción B (`AUTH_MODE = ""`):** la identidad la da **Cloudflare Access**. El Worker verifica por su cuenta el token firmado (firma con las llaves públicas del equipo, audiencia `ACCESS_AUD`, emisor `ACCESS_TEAM_DOMAIN` y vencimiento). No confía en cabeceras de correo simples. Si `ACCESS_TEAM_DOMAIN`, `ACCESS_AUD` o `ADMIN_EMAILS` faltan, nadie puede editar.
 - Además del correo autorizado, la edición exige la palabra clave, una sesión vigente (cookie HttpOnly/Secure de una hora), origen propio y un límite de cinco intentos cada 15 minutos.
 - Solo `/api/data` permite lectura desde otros dominios (para GitHub Pages).
+- Todas las respuestas llevan cabeceras de seguridad. La página usa una CSP estricta: los scripts en línea se autorizan por hash (se calcula en cada compilación) y no se permiten scripts externos ni `eval`. Las pruebas de `scripts/verify.mjs` lo comprueban.
 - No subas `.dev.vars`, `.env`, contraseñas, bases reales ni `node_modules`. Los correos autorizados y la palabra clave son secretos de Cloudflare, no van en el repositorio.
 
